@@ -34,7 +34,7 @@ pub fn genetic_algorithm(
             println!("Thread {} on gen {}", &file_name, i);
         }
         count += 1;
-        if count >= 500_000 {
+        if count >= 200_000 {
             run = false;
             continue;
         }
@@ -42,7 +42,7 @@ pub fn genetic_algorithm(
         if i % 100 == 0 {
             migrate(&mut castes);
 
-            castes[0..3].par_iter_mut().for_each(|caste| {
+            castes[0..2].par_iter_mut().for_each(|caste| {
                 mutate_caste(&adj_mat, caste);
             });
         }
@@ -99,7 +99,7 @@ fn mimesis(adj_mat: &Vec<Vec<f32>>, perm: &mut Permutation) {
     let mut count = 0;
     while improved {
         count += 1;
-        if count >= 5_000 {
+        if count >= n {
             improved = false;
             continue;
         }
@@ -151,10 +151,13 @@ fn mutate_caste(adj_mat: &Vec<Vec<f32>>, caste: &mut Vec<Permutation>) {
 fn mutate(adj_mat: &Vec<Vec<f32>>, x : &mut Permutation) {
     let mut rng = thread_rng();
 
-    let i = rng.gen_range(0..x.perm.len());
-    let j = rng.gen_range(0..x.perm.len());
+    for _ in 0..100 {
+        let i = rng.gen_range(0..x.perm.len());
+        let j = rng.gen_range(0..x.perm.len());
 
-    x.invert(i, j); 
+        x.invert(i, j);
+    }
+
     let len = permutation_length(adj_mat, &x.perm);
     x.len = len;
 }
