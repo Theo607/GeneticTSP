@@ -99,7 +99,7 @@ fn mimesis(adj_mat: &Vec<Vec<f32>>, perm: &mut Permutation) {
     let mut count = 0;
     while improved {
         count += 1;
-        if count >= 100_000 {
+        if count >= 5_000 {
             improved = false;
             continue;
         }
