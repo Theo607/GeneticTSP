@@ -34,7 +34,7 @@ pub fn genetic_algorithm(
             println!("Thread {} on gen {}", &file_name, i);
         }
         count += 1;
-        if count >= 100_000 {
+        if count >= 500_000 {
             run = false;
             continue;
         }
@@ -99,7 +99,7 @@ fn mimesis(adj_mat: &Vec<Vec<f32>>, perm: &mut Permutation) {
     let mut count = 0;
     while improved {
         count += 1;
-        if count >= 1_000 {
+        if count >= 100_000 {
             improved = false;
             continue;
         }
