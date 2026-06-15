@@ -14,12 +14,14 @@ fn main() {
 
     let mut worker_handles = Vec::new();
 
-    for file_name in FILE_NAMES.iter() {
+    let mut start = 0;
+    let mut end = 10;
+
+
+    for file_name in FILE_NAMES[start..end].iter() {
         let handle = dispatch(file_name.to_string(), true);
         worker_handles.push(handle);
     }
-    // let handle = dispatch("dj38.tsp".to_string(), true);
-    // worker_handles.push(handle);
 
     println!("\n All {} datasets are optimizing concurrently across your system cores!\n", worker_handles.len());
 
