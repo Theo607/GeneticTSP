@@ -11,7 +11,7 @@ pub fn dispatch(file_name: String, cross_method : bool) -> JoinHandle<()> {
     let name = file_name.clone();
 
     thread::spawn(move || {
-        genetic_algorithm(name.clone(), matrix, if cross_method {cross_one} else {cross_two});
+        genetic_algorithm(optimal_params(), name.clone(), matrix, if cross_method {cross_one} else {cross_two});
         println!("Thread for {} successfully completed its task!", name);
     })
 }

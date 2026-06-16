@@ -5,9 +5,11 @@ mod dispatcher;
 mod genetic;
 mod math;
 mod writer;
+mod genetic_analyzer;
 
 use data::FILE_NAMES;
 use dispatcher::dispatch;
+use genetic_analyzer::optimize_one_by_one;
 
 fn main() {
     println!("--- Starting Parallel Memetic TSP Solver ---");
@@ -19,7 +21,7 @@ fn main() {
 
 
     for file_name in FILE_NAMES[start..end].iter() {
-        let handle = dispatch(file_name.to_string(), true);
+        let handle = dispatch(file_name.to_string(), false);
         worker_handles.push(handle);
     }
 
